@@ -47,5 +47,17 @@ public class AddProductServiceClass implements AddProductData
 		// TODO Auto-generated method stub
 		return addprod.delteTheProductByName(Product_Name);
 	}
+	@Override
+	public boolean BuyProduct(String Name, String Address, long contact, String Prod_name, int quantity, String amt) {
+		// TODO Auto-generated method stub
+		return addprod.BuyProduct(Name, Address, contact, Prod_name, quantity, amt);
+	}
+	@Override
+	public int getAmount(String Prod_name) {
+		// TODO Auto-generated method stub
+		return addprod.getAmount(Prod_name);
+	}
+	
+
 
 }

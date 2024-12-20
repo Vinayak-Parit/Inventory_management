@@ -15,6 +15,8 @@ public interface AddProductRepositerory
 	public boolean UserRegistration(String Name, String EmailId, String Password, String moblie);
 	public boolean updateTheProductById(int id, String Product_Name, String Product_Category, double Price);
 	public boolean delteTheProductByName(String Product_Name);
+	public boolean BuyProduct(String Name, String Address, long contact, String Prod_name, int quantity,String amt);
+	public int getAmount(String Prod_name);
 
 
 

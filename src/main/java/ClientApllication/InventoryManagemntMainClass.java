@@ -41,9 +41,6 @@ public class InventoryManagemntMainClass {
 
                         case 1:
                             // Add product
-                            System.out.println("Enter the product id:");
-                            pid = sc.nextInt();
-                            sc.nextLine();
                             System.out.println("Enter the product name:");
                             Product_Name = sc.nextLine();
 
@@ -55,7 +52,7 @@ public class InventoryManagemntMainClass {
 
                             System.out.println("Enter the quantity of product:");
                             Quantity = sc.nextInt();
-                            addprod.setPid(pid);
+                            
                             addprod.setProduct_Name(Product_Name);
                             addprod.setPrice(Price);
                             addprod.setQuantity(Quantity);
@@ -70,12 +67,12 @@ public class InventoryManagemntMainClass {
                         case 2:
                             // View all products
                             Optional<List<AddProduct>> o = srv.getallProductList();
-                            System.out.println("Product_Id\tProduct_Name\tProduct_Price\tProduct_Category");
+                            System.out.println("Product_Id\tProduct_Name\t\tProduct_Price\tProduct_Category\tQuantity");
                             if (o.isPresent()) {
                                 List<AddProduct> l = o.get();
                                 l.forEach((product) -> System.out
                                         .println(product.getPid() + "\t\t" + product.getProduct_Name()+ " \t\t"
-                                                + product.getPrice() + "\t\t  " + product.getProduct_Category()));
+                                                + product.getPrice() + "\t\t  " + product.getProduct_Category()+"\t\t"+product.getQuantity()));
                             }
                             o.get().clear();
                             break;
@@ -85,13 +82,13 @@ public class InventoryManagemntMainClass {
                             System.out.println("Enter the category to search products:");
                             Product_Category = sc.nextLine();
                             Optional<List<AddProduct>> o2 = srv.getProductByCategory(Product_Category);
-                            System.out.println("Product_Id\t\t\tProduct_Name\t\t\tProduct_Price\t\t\tProduct_Category");
+                            System.out.println("Product_Id\tProduct_Name\t\tProduct_Price\tProduct_Category\t\tQuantity");
 
                             if (o2.isPresent()) {
                                 List<AddProduct> l = o2.get();
                                 l.forEach((product) -> System.out
-                                        .println(product.getPid() + "\t\t\t" + product.getProduct_Name() + "\t\t\t"
-                                                + product.getPrice() + "\t\t\t" + product.getProduct_Category()));
+                                        .println(product.getPid() + "\t\t" + product.getProduct_Name() + "\t\t"
+                                                + product.getPrice() + "\t\t" + product.getProduct_Category()+"\t\t"+product.getQuantity()));
                             }
                             o2.get().clear();
                             break;
@@ -211,6 +208,40 @@ public class InventoryManagemntMainClass {
                                         }
                                         o2.get().clear();
                                         break;
+                                    case 3:
+                                    	System.out.println("Enter The Name:");
+                                    	String Name=sc.nextLine();
+                                    	
+                                    	System.out.println("Enter the Address:");
+                                    	String Address=sc.nextLine();
+                                    	
+                                    	System.out.println("Enter the contact number:");
+                                    	long contact=sc.nextLong();
+                                    	sc.nextLine();
+                                    	System.out.println("Enter the product name do u want to buy:");
+                                    	String Prod_name=sc.nextLine();
+                                    	System.out.println("Enter the quantity of product to buy: ");
+                                    	int quantity=sc.nextInt();
+                                    	sc.nextLine();
+                            			System.out.println("Do want paid amount online say yes if want to paid");
+                            			String mode=sc.nextLine();
+                            			if(mode.equals("yes"))
+                            			{
+                            				System.out.println("Enter the amount:=>"+srv.getAmount(Prod_name));
+                            				String amt=sc.nextLine();
+                            				if(amt.equals(srv.getAmount(Prod_name)))
+                            				{
+                            					System.out.println("___________Oder suceefully________");
+                            					srv.BuyProduct(Name, Address, contact, Prod_name, quantity, amt);
+                            				}
+                            				else
+                            				{
+                            					System.out.println("Error:=>Enter the coorect amount....!");
+                            				}
+                            				
+                            			}
+                            			
+
 
                                     default:
                                         System.out.println("Wrong choice...........!");
@@ -273,23 +304,7 @@ public class InventoryManagemntMainClass {
                    }while(ch>0);
                      break;
                     	
-                    case 3:
-                    	System.out.println("Enter The Name:");
-                    	String Name=sc.nextLine();
                     	
-                    	System.out.println("Enter the Address:");
-                    	String Address=sc.nextLine();
-                    	
-                    	System.out.println("Enter the contact number:");
-                    	long contact=sc.nextLong();
-                    	sc.nextLine();
-                    	System.out.println("Enter the product name do u want to buy:");
-                    	String Prod_name=sc.nextLine();
-                    	System.out.println("Enter the quantity of product to buy: ");
-                    	int quantity=sc.nextInt();
-                    	
-                    	
-                    	break;
                     	
                     default:
                         // Invalid choice handling

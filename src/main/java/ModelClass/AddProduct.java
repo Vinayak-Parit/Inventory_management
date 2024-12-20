@@ -9,12 +9,13 @@ public class AddProduct
     private String Product_Category;
     private String password="vinayak@24";
     
-    public AddProduct(int pid,String Product_Name,double Price,String Product_Category)
+    public AddProduct(int pid,String Product_Name,double Price,String Product_Category,int Quantity)
     {
     	this.pid=pid;
     	this.Product_Name=Product_Name;
     	this.Price=Price;
     	this.Product_Category=Product_Category;
+    	this.Quantity=Quantity;
     }
     public AddProduct()
     {

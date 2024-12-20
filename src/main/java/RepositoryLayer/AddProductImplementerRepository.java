@@ -18,10 +18,11 @@ public class AddProductImplementerRepository extends DATABASESTATE implements Ad
 	{
 		try 
 		{
-			pst=con.prepareStatement("insert into Add_Product values(0,?,?,?)");
+			pst=con.prepareStatement("insert into Add_Product values(0,?,?,?,?)");
 			pst.setString(1,prod.getProduct_Name());
 			pst.setDouble(2,prod.getPrice());
 			pst.setString(3,prod.getProduct_Category());
+			pst.setInt(4,prod.getQuantity());
 			int value=pst.executeUpdate();
 			return value>0?true:false;
 		} 
@@ -44,7 +45,7 @@ public class AddProductImplementerRepository extends DATABASESTATE implements Ad
 			while(rs.next())
 			{
 				
-				AddProduct allRecord=new AddProduct(rs.getInt(1),rs.getString(2),rs.getDouble(3),rs.getString(4));
+				AddProduct allRecord=new AddProduct(rs.getInt(1),rs.getString(2),rs.getDouble(3),rs.getString(4),rs.getInt(5));
 				l.add(allRecord);
 			}
 			
@@ -68,7 +69,7 @@ public class AddProductImplementerRepository extends DATABASESTATE implements Ad
 			rs=pst.executeQuery();
 			while(rs.next())
 			{
-				AddProduct allRecord=new AddProduct(rs.getInt(1),rs.getString(2),rs.getDouble(3),rs.getString(4));
+				AddProduct allRecord=new AddProduct(rs.getInt(1),rs.getString(2),rs.getDouble(3),rs.getString(4),rs.getInt(5));
                 l.add(allRecord);
 			}
 			return l.size()>0?Optional.of(l):Optional.empty();
@@ -198,6 +199,54 @@ public class AddProductImplementerRepository extends DATABASESTATE implements Ad
 		}
 		
 		
+	}
+
+	@Override
+	public boolean BuyProduct(String Name, String Address, long contact, String Prod_name, int quantity,String amt) {
+		try {
+			pst=con.prepareStatement("insert into odered_history value(0,?,?,?,?,?)");
+			pst.setString(1,Name);
+			pst.setString(2,Prod_name);
+			pst.setLong(3,contact);
+			pst.setString(4,Address);
+			pst.setInt(5,quantity);
+			if(!amt.equals(null))
+			{
+				pst.setString(6, amt+"paaid");
+			}
+			else
+			{
+				pst.setString(6,"pending");
+
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
+
+	@Override
+	public int getAmount(String Prod_name) {
+		String getAmt=null;
+		try {
+			
+			pst=con.prepareStatement("call getAmount2(?,?)");
+			pst.setString(1, Prod_name);
+			pst.setString(2,getAmt);
+			
+			rs=pst.executeQuery();
+			int amt=rs.getInt(getAmt);
+			return amt;
+		} catch (SQLException e) {
+			System.out.println("Exception is"+e);
+
+			return 0;
+
+		}
 	}
 
 
