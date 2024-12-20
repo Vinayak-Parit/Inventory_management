@@ -106,10 +106,10 @@ public class InventoryManagemntMainClass {
                             System.out.println("Enter the product category:");
                             Product_Category = sc.nextLine();
 
-                            System.out.println("Enter the price of product:");
+                            System.out.println("Enter  product price:");
                             Price = sc.nextDouble();
 
-                            System.out.println("Enter the quantity of product:");
+                            System.out.println("Enter  product quantity:");
                             Quantity = sc.nextInt();
                              if(srv.updateTheProductById(id, Product_Name, Product_Category, Price))
                              {
