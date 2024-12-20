@@ -20,7 +20,7 @@ public class InventoryManagemntMainClass {
         int ch = 0;
         AddProduct addprod = new AddProduct();
         AddProductData srv = new AddProductServiceClass();
-        System.out.println("Select your role: admin or user");
+        System.out.println("Select your role: admin or user to proceed");
         String Role = sc.nextLine();
           
         if (Role.equals("admin")) {
