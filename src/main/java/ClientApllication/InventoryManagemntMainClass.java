@@ -32,7 +32,7 @@ public class InventoryManagemntMainClass {
                     System.out.println("1. ADD PRODUCTS...");
                     System.out.println("2. VIEW THE PRODUCTS....");
                     System.out.println("3. VIEW THE PRODUCTS CATEGORY WISE...");
-                    System.out.println("4.UPDATE THE PRODUCT BYUSING PRODUCT ID...");
+                    System.out.println("4.UPDATE THE PRODUCT BYUSING PRODUCT ID..");
                     System.out.println("Enter your choice:");
                     ch = sc.nextInt();
                     sc.nextLine();
