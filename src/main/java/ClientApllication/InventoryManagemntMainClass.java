@@ -8,7 +8,7 @@ import ServiceLayer.*;
 import java.io.*;
 import java.sql.*;
 
-public class InventoryManagemntMainClass {
+public class InventoryManagemntMainClass {  //main class
 
     public static void main(String arg[]) {    //main function
         int pid;
