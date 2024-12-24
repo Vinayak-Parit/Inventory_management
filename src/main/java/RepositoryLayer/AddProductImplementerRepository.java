@@ -1,5 +1,7 @@
 package RepositoryLayer;
 
+import java.io.*;
+import java.sql.*;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -202,17 +204,19 @@ public class AddProductImplementerRepository extends DATABASESTATE implements Ad
 	}
 
 	@Override
-	public boolean BuyProduct(String Name, String Address, long contact, String Prod_name, int quantity,String amt) {
+	public boolean BuyProduct(String Name, String Address, long contact, String Prod_name, int quantity,double amt) {
 		try {
-			pst=con.prepareStatement("insert into odered_history value(0,?,?,?,?,?)");
+			pst=con.prepareStatement("insert into odered_history value(0,?,?,?,?,?,?)");
 			pst.setString(1,Name);
 			pst.setString(2,Prod_name);
 			pst.setLong(3,contact);
 			pst.setString(4,Address);
 			pst.setInt(5,quantity);
-			if(!amt.equals(null))
+			if(amt!=0.0)
 			{
 				pst.setString(6, amt+"paaid");
+				int value=pst.executeUpdate();
+				return value>0?true:false;
 			}
 			else
 			{
@@ -224,27 +228,57 @@ public class AddProductImplementerRepository extends DATABASESTATE implements Ad
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+
+
 		}
-		
 		return false;
+
 	}
 
 	@Override
-	public int getAmount(String Prod_name) {
-		String getAmt=null;
+	public double getAmount(String Prod_name) {
 		try {
-			
-			pst=con.prepareStatement("call getAmount2(?,?)");
+			pst=con.prepareStatement("select Product_Price from add_product where Product_Name=?");
 			pst.setString(1, Prod_name);
-			pst.setString(2,getAmt);
-			
 			rs=pst.executeQuery();
-			int amt=rs.getInt(getAmt);
-			return amt;
-		} catch (SQLException e) {
+			while(rs.next())
+			{
+				return rs.getDouble("Product_Price");
+			}
+		} catch (SQLException e)
+		{
 			System.out.println("Exception is"+e);
 
 			return 0;
+
+		}
+		return 0;
+	}
+
+	@Override
+	public boolean AddBulckdata(String path) 
+	{
+		try {boolean result=false;
+			FileReader fr=new FileReader(path);
+			BufferedReader bf=new BufferedReader(fr);
+			
+			String data;
+			while((data=bf.readLine())!=null)
+			{
+			  CallableStatement c=con.prepareCall("call addBulckData(0,?,?,?,?)");
+			  String bulck[]=data.split(",");
+			  c.setString(1, bulck[0]);
+			  c.setInt(2,Integer.parseInt(bulck[1]));
+			  c.setString(3,bulck[2]);
+			  c.setInt(4,Integer.parseInt(bulck[3]));
+			  result=c.execute();
+			}
+			return !result;
+		} 
+		catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.print("Exception is"+e);
+			return false;
 
 		}
 	}

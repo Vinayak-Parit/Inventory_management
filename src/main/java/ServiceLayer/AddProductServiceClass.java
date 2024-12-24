@@ -48,14 +48,19 @@ public class AddProductServiceClass implements AddProductData
 		return addprod.delteTheProductByName(Product_Name);
 	}
 	@Override
-	public boolean BuyProduct(String Name, String Address, long contact, String Prod_name, int quantity, String amt) {
+	public boolean BuyProduct(String Name, String Address, long contact, String Prod_name, int quantity, double amt) {
 		// TODO Auto-generated method stub
 		return addprod.BuyProduct(Name, Address, contact, Prod_name, quantity, amt);
 	}
 	@Override
-	public int getAmount(String Prod_name) {
+	public double getAmount(String Prod_name) {
 		// TODO Auto-generated method stub
 		return addprod.getAmount(Prod_name);
+	}
+	@Override
+	public boolean AddBulckdata(String path) {
+		// TODO Auto-generated method stub
+		return addprod.AddBulckdata(path);
 	}
 	
 

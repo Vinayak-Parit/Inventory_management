@@ -5,6 +5,7 @@ import java.util.*;
 import ModelClass.AddProduct;
 import ServiceLayer.*;
 
+import java.io.*;
 import java.sql.*;
 
 public class InventoryManagemntMainClass {
@@ -20,7 +21,7 @@ public class InventoryManagemntMainClass {
         int ch = 0;
         AddProduct addprod = new AddProduct();
         AddProductData srv = new AddProductServiceClass();
-        System.out.println("Select your role: admin or user to proceed");
+        System.out.println("Select your role: admin or user proceed here: ");
         String Role = sc.nextLine();
           
         if (Role.equals("admin")) {
@@ -29,10 +30,12 @@ public class InventoryManagemntMainClass {
 
             if (password.equals(addprod.getPassWord())) {
                 do {
-                    System.out.println("1. ADD PRODUCTS....");
+                    System.out.println("1. ADD PRODUCTS...");
                     System.out.println("2. VIEW THE PRODUCTS....");
-                    System.out.println("3. VIEW THE PRODUCTS CATEGORY WISE");
-                    System.out.println("4.UPDATE THE PRODUCT BYUSING PRODUCT ID");
+                    System.out.println("3. VIEW THE PRODUCTS CATEGORY WISE...");
+                    System.out.println("4.UPDATE THE PRODUCT BYUSING PRODUCT ID..");
+                    System.out.println("5.DELETE THE PRODUCTS");
+                    System.out.println("6 ADD BULCK OF PRDUCTS");
                     System.out.println("Enter your choice:");
                     ch = sc.nextInt();
                     sc.nextLine();
@@ -103,10 +106,10 @@ public class InventoryManagemntMainClass {
                             System.out.println("Enter the product category:");
                             Product_Category = sc.nextLine();
 
-                            System.out.println("Enter the price of product:");
+                            System.out.println("Enter  product price:");
                             Price = sc.nextDouble();
 
-                            System.out.println("Enter the quantity of product:");
+                            System.out.println("Enter  product quantity:");
                             Quantity = sc.nextInt();
                              if(srv.updateTheProductById(id, Product_Name, Product_Category, Price))
                              {
@@ -133,6 +136,19 @@ public class InventoryManagemntMainClass {
                             {
                             	System.out.println("failed to delte........!");
                             }
+                        	break;
+                        case 6:
+                        	System.out.println("Select the file of bulck product data");
+                        	String path=sc.nextLine();
+                        	if(srv.AddBulckdata(path))
+                        	{
+                        		System.out.println("Bulck data added sucefuly");
+                        	}
+                        	else
+                        	{
+                        		System.out.println("Falied to add data.......!");
+                        	}
+                        	
                         	break;
                         default:
                             System.out.println("Wrong choice...........!");
@@ -225,20 +241,29 @@ public class InventoryManagemntMainClass {
                                     	sc.nextLine();
                             			System.out.println("Do want paid amount online say yes if want to paid");
                             			String mode=sc.nextLine();
+                            			double amt=0.0;
                             			if(mode.equals("yes"))
                             			{
                             				System.out.println("Enter the amount:=>"+srv.getAmount(Prod_name));
-                            				String amt=sc.nextLine();
-                            				if(amt.equals(srv.getAmount(Prod_name)))
+                            				amt=sc.nextDouble();
+                            				if(amt==srv.getAmount(Prod_name))
                             				{
-                            					System.out.println("___________Oder suceefully________");
-                            					srv.BuyProduct(Name, Address, contact, Prod_name, quantity, amt);
+                            					if(srv.BuyProduct(Name, Address, contact, Prod_name, quantity, amt))
+                            					{
+                                					System.out.println("___________Oder suceefully________");
+
+                            					}
                             				}
+                            
                             				else
                             				{
                             					System.out.println("Error:=>Enter the coorect amount....!");
                             				}
                             				
+                            			}
+                            			else if(mode.equals("no"))
+                            			{
+                            				srv.BuyProduct(Name, Address, contact, Prod_name, quantity, amt);
                             			}
                             			
 
@@ -266,6 +291,7 @@ public class InventoryManagemntMainClass {
                     		System.out.println("<=====================Fress 2. for go back ================<");
                     		System.out.println("Enter the choice:");
                     		ch=sc.nextInt();
+                    		sc.nextLine();
                     	switch(ch)
                     	{
                     	

@@ -16,6 +16,8 @@ public interface AddProductData
   public boolean updateTheProductById(int id,String Product_Name,String Product_Category,double Price);
   public boolean delteTheProductByName(String Product_Name);
   
-  public boolean BuyProduct(String Name,String Address,long contact,String Prod_name,int quantity, String amt2);
-  int getAmount(String Prod_name);
+  public boolean BuyProduct(String Name,String Address,long contact,String Prod_name,int quantity, double amt);
+  double getAmount(String Prod_name);
+  
+  public boolean AddBulckdata(String path);
 }
