@@ -24,7 +24,7 @@ public class InventoryManagemntMainClass {
         System.out.println("Select your role: admin or user proceed here: ");
         String Role = sc.nextLine();
           
-        if (Role.equals("admin")) {
+        if (Role.equals("admin")) {    //Admin login
             System.out.println("Enter the password:");
             String password = sc.nextLine();
 
