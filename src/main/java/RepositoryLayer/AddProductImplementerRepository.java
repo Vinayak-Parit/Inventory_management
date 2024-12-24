@@ -214,7 +214,7 @@ public class AddProductImplementerRepository extends DATABASESTATE implements Ad
 			pst.setInt(5,quantity);
 			if(amt!=0.0)
 			{
-				pst.setString(6, amt+"paaid");
+				pst.setString(6, amt+"paid");
 				int value=pst.executeUpdate();
 				return value>0?true:false;
 			}
