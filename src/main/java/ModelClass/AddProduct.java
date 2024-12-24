@@ -1,6 +1,6 @@
 package ModelClass;
 
-public class AddProduct 
+public class AddProduct   //product Model
 {
 	private int pid;
 	private double Price;
