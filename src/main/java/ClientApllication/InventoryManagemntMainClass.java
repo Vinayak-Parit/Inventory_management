@@ -19,7 +19,7 @@ public class InventoryManagemntMainClass {  //main class
 
         Scanner sc = new Scanner(System.in);
         int ch = 0;
-        AddProduct addprod = new AddProduct();
+        AddProduct addprod = new AddProduct();//model class object product object
         AddProductData srv = new AddProductServiceClass();
         System.out.println("Select your role: admin or user proceed here: ");
         String Role = sc.nextLine();
