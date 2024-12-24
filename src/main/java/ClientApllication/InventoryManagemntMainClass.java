@@ -10,7 +10,7 @@ import java.sql.*;
 
 public class InventoryManagemntMainClass {
 
-    public static void main(String arg[]) {
+    public static void main(String arg[]) {    //main function
         int pid;
         double Price;
         String Product_Name;
