@@ -14,10 +14,10 @@ public class DBCONFIGFile
    {
 	   try
 	   {
+	
 		 Properties p=new Properties();
 		 File f=new File(".");
 		 FileInputStream fins=new FileInputStream(f.getAbsolutePath().substring(0,f.getAbsolutePath().length()-1)+"src/main/resources/DbconfigFileProperties.properties");
-
          p.load(fins);
          Class.forName(p.getProperty("driver"));
          con=DriverManager.getConnection(p.getProperty("url"),p.getProperty("username"),p.getProperty("password"));
