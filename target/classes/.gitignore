@@ -1,4 +1,8 @@
 /ClientApllication/
 /META-INF/
+<<<<<<< Updated upstream
 /RepositoryLayer/
 /ServiceLayer/
+=======
+/ModelClass/
+>>>>>>> Stashed changes
