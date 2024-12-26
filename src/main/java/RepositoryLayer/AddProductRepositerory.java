@@ -18,6 +18,6 @@ public interface AddProductRepositerory
 	public boolean BuyProduct(String Name, String Address, long contact, String Prod_name, int quantity,double amt);
 	public double getAmount(String Prod_name);
 	public boolean AddBulckdata(String path);
-
+	public Optional<List> getOderHistory();
 
 }

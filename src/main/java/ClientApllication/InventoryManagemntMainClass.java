@@ -36,6 +36,7 @@ public class InventoryManagemntMainClass {  //main class
                     System.out.println("4.UPDATE THE PRODUCT BYUSING PRODUCT ID..");
                     System.out.println("5.DELETE THE PRODUCTS");
                     System.out.println("6 ADD BULCK OF PRDUCTS");
+                    System.out.println("7 TRACK THE INVENTERY HISTORY ODER HISTORY");
                     System.out.println("Enter your choice:");
                     ch = sc.nextInt();
                     sc.nextLine();
@@ -150,6 +151,11 @@ public class InventoryManagemntMainClass {  //main class
                         	}
                         	
                         	break;
+                        case 7:
+                        	System.out.println("<===============================================[  Oder History ]================================================>");
+                        	
+                        	
+                        	break;
                         default:
                             System.out.println("Wrong choice...........!");
                             break;
@@ -244,9 +250,9 @@ public class InventoryManagemntMainClass {  //main class
                             			double amt=0.0;
                             			if(mode.equals("yes"))
                             			{
-                            				System.out.println("Enter the amount:=>"+srv.getAmount(Prod_name));
+                            				System.out.println("Enter the amount:=>"+srv.getAmount(Prod_name)*quantity);
                             				amt=sc.nextDouble();
-                            				if(amt==srv.getAmount(Prod_name))
+                            				if(amt==srv.getAmount(Prod_name)*quantity)
                             				{
                             					if(srv.BuyProduct(Name, Address, contact, Prod_name, quantity, amt))
                             					{
@@ -263,6 +269,7 @@ public class InventoryManagemntMainClass {  //main class
                             			}
                             			else if(mode.equals("no"))
                             			{
+                            				System.out.println("oder sucefull u pay amount on at offline=>"+srv.getAmount(Prod_name)*quantity);
                             				srv.BuyProduct(Name, Address, contact, Prod_name, quantity, amt);
                             			}
                             			

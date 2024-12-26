@@ -206,12 +206,13 @@ public class AddProductImplementerRepository extends DATABASESTATE implements Ad
 	@Override
 	public boolean BuyProduct(String Name, String Address, long contact, String Prod_name, int quantity,double amt) {
 		try {
-			pst=con.prepareStatement("insert into odered_history value(0,?,?,?,?,?,?)");
+			pst=con.prepareStatement("insert into odered_history(customer_name,Odered_Product_Name,Mobile_Number,Address,quantity,Amount) values(?,?,?,?,?,?)");
 			pst.setString(1,Name);
 			pst.setString(2,Prod_name);
 			pst.setLong(3,contact);
 			pst.setString(4,Address);
 			pst.setInt(5,quantity);
+
 			if(amt!=0.0)
 			{
 				pst.setString(6, amt+"paid");
@@ -220,7 +221,11 @@ public class AddProductImplementerRepository extends DATABASESTATE implements Ad
 			}
 			else
 			{
+
 				pst.setString(6,"pending");
+				int value=pst.executeUpdate();
+				return value>0?true:false;
+
 
 			}
 			
@@ -281,6 +286,25 @@ public class AddProductImplementerRepository extends DATABASESTATE implements Ad
 			return false;
 
 		}
+	}
+
+	@Override
+	public Optional<List> getOderHistory() {
+		List OderList=new ArrayList();
+		try {
+			pst=con.prepareStatement("select * from odered_history");
+			rs=pst.executeQuery();
+			while(rs.next())
+			{
+				
+			}
+		} 
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return Optional.empty();
 	}
 
 
