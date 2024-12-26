@@ -1,5 +1,10 @@
 package ModelClass;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+
+@Data
 public class AddProduct   //product Model
 {
 	private int pid;
@@ -17,41 +22,11 @@ public class AddProduct   //product Model
     	this.Product_Category=Product_Category;
     	this.Quantity=Quantity;
     }
+    
     public AddProduct()
     {
-    	
+
     }
-    
-	public int getPid() {
-		return pid;
-	}
-	public void setPid(int pid) {
-		this.pid = pid;
-	}
-	public double getPrice() {
-		return Price;
-	}
-	public void setPrice(double price) {
-		Price = price;
-	}
-	public String getProduct_Name() {
-		return Product_Name;
-	}
-	public void setProduct_Name(String product_Name) {
-		Product_Name = product_Name;
-	}
-	public int getQuantity() {
-		return Quantity;
-	}
-	public void setQuantity(int quantity) {
-		Quantity = quantity;
-	}
-	public String getProduct_Category() {
-		return Product_Category;
-	}
-	public void setProduct_Category(String product_Category) {
-		Product_Category = product_Category;
-	}
     
     public String getPassWord()
     {

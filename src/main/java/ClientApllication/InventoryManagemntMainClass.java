@@ -70,13 +70,15 @@ public class InventoryManagemntMainClass {  //main class
                         case 2:
                             // View all products
                             Optional<List<AddProduct>> o = srv.getallProductList();
-                            System.out.println("Product_Id\tProduct_Name\t\tProduct_Price\tProduct_Category\tQuantity");
+                            System.out.println(String.format("%-12s%-20s%-15s%-20s%-10s", 
+                            	    "Product_Id", "Product_Name", "Product_Price", "Product_Category", "Quantity"));
+                            System.out.println("-----------------------------------------------------------------------");
                             if (o.isPresent()) {
                                 List<AddProduct> l = o.get();
-                                l.forEach((product) -> System.out
-                                        .println(product.getPid() + "\t\t" + product.getProduct_Name()+ " \t\t"
-                                                + product.getPrice() + "\t\t  " + product.getProduct_Category()+"\t\t"+product.getQuantity()));
-                            }
+                                l.forEach((product) -> System.out.printf("%-12d%-20s%-15.2f%-20s%-10d%n", 
+                                	    product.getPid(), product.getProduct_Name(), product.getPrice(), 
+                                	    product.getProduct_Category(), product.getQuantity()));
+                                }
                             o.get().clear();
                             break;
 
@@ -85,14 +87,16 @@ public class InventoryManagemntMainClass {  //main class
                             System.out.println("Enter the category to search products:");
                             Product_Category = sc.nextLine();
                             Optional<List<AddProduct>> o2 = srv.getProductByCategory(Product_Category);
-                            System.out.println("Product_Id\tProduct_Name\t\tProduct_Price\tProduct_Category\t\tQuantity");
+                            System.out.println(String.format("%-12s%-20s%-15s%-20s%-10s", 
+                            	    "Product_Id", "Product_Name", "Product_Price", "Product_Category", "Quantity"));
+                            System.out.println("----------------------------------------------------------------------");
 
                             if (o2.isPresent()) {
                                 List<AddProduct> l = o2.get();
-                                l.forEach((product) -> System.out
-                                        .println(product.getPid() + "\t\t" + product.getProduct_Name() + "\t\t"
-                                                + product.getPrice() + "\t\t" + product.getProduct_Category()+"\t\t"+product.getQuantity()));
-                            }
+                                l.forEach((product) -> System.out.printf("%-12d%-20s%-15.2f%-20s%-10d%n", 
+                                	    product.getPid(), product.getProduct_Name(), product.getPrice(), 
+                                	    product.getProduct_Category(), product.getQuantity()));
+                                }
                             o2.get().clear();
                             break;
                         case 4:
@@ -197,14 +201,16 @@ public class InventoryManagemntMainClass {  //main class
                                     case 1:
                                         // View all products
                                         Optional<List<AddProduct>> o = srv.getallProductList();
-                                        System.out.println("Product_Id\tProduct_Name\tProduct_Price\tProduct_Category");
+                                        System.out.println(String.format("%-12s%-20s%-15s%-20s%-10s", 
+                                        	    "Product_Id", "Product_Name", "Product_Price", "Product_Category", "Quantity"));
+                                        System.out.println("--------------------------------------------------------------------");
                                         if (o.isPresent())
                                         {
                                             List<AddProduct> l = o.get();
-                                            l.forEach((product) -> System.out
-                                                    .println(product.getPid() + "\t\t" + product.getProduct_Name() + "\t\t"
-                                                            + product.getPrice() + "\t\t" + product.getProduct_Category()));
-                                        }
+                                            l.forEach((product) -> System.out.printf("%-12d%-20s%-15.2f%-20s%-10d%n", 
+                                            	    product.getPid(), product.getProduct_Name(), product.getPrice(), 
+                                            	    product.getProduct_Category(), product.getQuantity()));
+                                            }
                                         o.get().clear();
                                         break;
 
@@ -213,32 +219,38 @@ public class InventoryManagemntMainClass {  //main class
                                         System.out.println("Enter the category to search products:");
                                         Product_Category = sc.nextLine();
                                         Optional<List<AddProduct>> o2 = srv.getProductByCategory(Product_Category);
-                                        System.out.println("Product_Id\tProduct_Name\tProduct_Price\tProduct_Category");
+                                        System.out.println(String.format("%-12s%-20s%-15s%-20s%-10s", 
+                                        	    "Product_Id", "Product_Name", "Product_Price", "Product_Category", "Quantity"));
+                                        System.out.println("----------------------------------------------------------------------");
 
                                         if (o2.isPresent()) 
                                         {
                                             List<AddProduct> l = o2.get();
-                                            l.forEach((product) -> System.out
-                                                    .println(product.getPid() + "\t\t" + product.getProduct_Name() + "\t\t"
-                                                            + product.getPrice() + "\t\t" + product.getProduct_Category()));
-                                        }
+                                            l.forEach((product) -> System.out.printf("%-12d%-20s%-15.2f%-20s%-10d%n", 
+                                            	    product.getPid(), product.getProduct_Name(), product.getPrice(), 
+                                            	    product.getProduct_Category(), product.getQuantity()));
+                                            }
                                         o2.get().clear();
                                         break;
                                     case 3:
-                                    	System.out.println("Enter The Name:");
+                                    	System.out.println("Enter Your Name:");
                                     	String Name=sc.nextLine();
                                     	
-                                    	System.out.println("Enter the Address:");
+                                    	System.out.println("Enter Your Address:");
                                     	String Address=sc.nextLine();
                                     	
-                                    	System.out.println("Enter the contact number:");
+                                    	System.out.println("Enter Your contact number:");
                                     	long contact=sc.nextLong();
                                     	sc.nextLine();
+                                    	
                                     	System.out.println("Enter the product name do u want to buy:");
                                     	String Prod_name=sc.nextLine();
                                     	System.out.println("Enter the quantity of product to buy: ");
                                     	int quantity=sc.nextInt();
                                     	sc.nextLine();
+                                    	
+                                    	
+                                    	
                             			System.out.println("Do want paid amount online say yes if want to paid");
                             			String mode=sc.nextLine();
                             			double amt=0.0;
@@ -250,7 +262,7 @@ public class InventoryManagemntMainClass {  //main class
                             				{
                             					if(srv.BuyProduct(Name, Address, contact, Prod_name, quantity, amt))
                             					{
-                                					System.out.println("___________Oder suceefully________");
+                                					System.out.println("__________Order Successfully Genrated________");
 
                             					}
                             				}
@@ -286,9 +298,9 @@ public class InventoryManagemntMainClass {  //main class
                     	do
                     	{
                     		
-                    		System.out.println("=====================>Frees 1.For continue registration================>");
+                    		System.out.println("=====================>[ Press 1.For continue registration ]<================>");
                     		
-                    		System.out.println("<=====================Fress 2. for go back ================<");
+                    		System.out.println("<=====================>[ Press 2. for go back ]<================<");
                     		System.out.println("Enter the choice:");
                     		ch=sc.nextInt();
                     		sc.nextLine();
