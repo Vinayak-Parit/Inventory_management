@@ -13,11 +13,16 @@ public interface AddProductData
   public boolean  getUserLoginByEmail(String Email);
   public boolean getUserLoginByPassword(String Password);
   public boolean UserRegistration(String Name,String EmailId,String Password,String moblie);
-  public boolean updateTheProductById(int id,String Product_Name,String Product_Category,double Price);
+  public boolean updateTheProductById(int id,String Product_Name,String Product_Category,double Price,int Quantity);
   public boolean delteTheProductByName(String Product_Name);
-  
   public boolean BuyProduct(String Name,String Address,long contact,String Prod_name,int quantity, double amt);
   double getAmount(String Prod_name);
-  
   public boolean AddBulckdata(String path);
+	public boolean orderList(int email);
+	public boolean Cart( int email, String  ProductName, int quantity);
+	public int getEmailId(String email);
+	public int getOrderIdByName(int email);
+	public boolean GenrateBill(int oId);
+	public boolean paymentStatus(int orderId, String status);
+	public boolean updateQuantity(String paid);
 }
